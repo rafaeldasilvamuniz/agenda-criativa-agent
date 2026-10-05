@@ -1,8 +1,10 @@
+import express from 'express';
 import { serve } from '@novu/framework/express';
 import { agendaAgent } from '../src/agent.js';
 
-const handler = serve({
-  agents: [agendaAgent],
-});
+const app = express();
 
-export default handler;
+app.use(express.json());
+app.use('/api/novu', serve({ agents: [agendaAgent] }));
+
+export default app;
