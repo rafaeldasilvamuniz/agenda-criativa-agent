@@ -1,9 +1,6 @@
 {
     "version": 2,
     "rewrites": [
-      {
-        "source": "/(.*)",
-        "destination": "/api/novu"
-      }
+      { "source": "/(.*)", "destination": "/api/novu" }
     ]
   }
