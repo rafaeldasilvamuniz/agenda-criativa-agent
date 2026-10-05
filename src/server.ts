@@ -1,7 +1,8 @@
 import 'dotenv/config';
 import express from 'express';
 import { serve } from '@novu/framework/express';
-import { agendaAgent } from './agent';
+// A correção está aqui: adicione a extensão .js
+import { agendaAgent } from './agent.js'; 
 
 const app = express();
 
