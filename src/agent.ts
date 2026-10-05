@@ -1,9 +1,8 @@
 import { agent, Card, CardText, Button, Actions } from '@novu/framework';
 
 export const agendaAgent = agent('agenda-criativa-agent', {
-  onMessage: async (message, ctx) => {
-    // Menu principal
-    return ctx.reply(
+  onMessage: async (message, ctx): Promise<void> => {
+    await ctx.reply(
       Card({
         title: '📅 Agenda Criativa',
         children: [
@@ -15,11 +14,12 @@ export const agendaAgent = agent('agenda-criativa-agent', {
         ],
       })
     );
+    return;
   },
 
-  onAction: async (action, ctx) => {
+  onAction: async (action, ctx): Promise<void> => {
     if (action.id === 'agendar') {
-      return ctx.reply(
+      await ctx.reply(
         Card({
           title: 'Escolha o serviço',
           children: [
@@ -32,21 +32,24 @@ export const agendaAgent = agent('agenda-criativa-agent', {
           ],
         })
       );
+      return;
     }
 
     if (action.id === 'consultar') {
-      return ctx.reply('Você não tem agendamentos futuros. Que tal criar um novo?');
+      await ctx.reply('Você não tem agendamentos futuros. Que tal criar um novo?');
+      return;
     }
 
     if (action.id === 'servico_corte' || action.id === 'servico_barba') {
       const servico = action.id === 'servico_corte' ? 'Corte' : 'Barba';
-      return ctx.reply(
+      await ctx.reply(
         `Você escolheu *${servico}*. Informe a data e horário desejados (ex: "25/12 às 14:00").`
       );
+      return;
     }
 
     if (action.id === 'voltar_menu') {
-      return ctx.reply(
+      await ctx.reply(
         Card({
           title: '📅 Agenda Criativa',
           children: [
@@ -58,6 +61,7 @@ export const agendaAgent = agent('agenda-criativa-agent', {
           ],
         })
       );
+      return;
     }
   },
 });
